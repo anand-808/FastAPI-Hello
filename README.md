@@ -7,26 +7,6 @@ This project is a basic FastAPI application that exposes a simple API. The app r
 - Docker for containerization
 - Uvicorn as the ASGI server
 
-## Installation
-
-### 1. Clone the repository
-```bash
-git clone <repository-url>
-cd <project-directory>
-```
-
-### 2. Install dependencies
-```bash
-pip install fastapi uvicorn
-```
-
-### 3. Run the Application
-```bash
-uvicorn main:app --reload
-```
-
-Visit the app at `http://127.0.0.1:8000` and the API documentation at `http://127.0.0.1:8000/docs`.
-
 ## Running with Docker
 
 ### 1. Build Docker Image
