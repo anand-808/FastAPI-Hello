@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.11.9 on win32)" generated="2024-10-28T10:57:44.866614" rpa="false" schemaversion="5">
+<suite id="s1" name="Robo Test Cases" source="C:\Users\anaramac\Documents\Codes\Fastapi\robo_test_cases.robot">
+<test id="s1-t1" name="Open Example Website" line="8">
+<kw name="Open Browser" owner="SeleniumLibrary">
+<msg time="2024-10-28T10:57:45.149509" level="INFO">Opening browser 'chrome' to base url 'https://example.com'.</msg>
+<arg>${URL}</arg>
+<arg>chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<status status="PASS" start="2024-10-28T10:57:45.149509" elapsed="11.195404"/>
+</kw>
+<kw name="Title Should Be" owner="SeleniumLibrary">
+<msg time="2024-10-28T10:57:56.355480" level="INFO">Page title is 'Example Domain'.</msg>
+<arg>Example Domain</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<status status="PASS" start="2024-10-28T10:57:56.344913" elapsed="0.010567"/>
+</kw>
+<kw name="Close Browser" owner="SeleniumLibrary">
+<doc>Closes the current browser.</doc>
+<status status="PASS" start="2024-10-28T10:57:56.356480" elapsed="2.264666"/>
+</kw>
+<status status="PASS" start="2024-10-28T10:57:45.148496" elapsed="13.474386"/>
+</test>
+<status status="PASS" start="2024-10-28T10:57:44.868679" elapsed="13.756623"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="Robo Test Cases">Robo Test Cases</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
