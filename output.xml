@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1.1 (Python 3.11.9 on win32)" generated="2024-10-28T10:57:44.866614" rpa="false" schemaversion="5">
+<robot generator="Robot 7.1.1 (Python 3.11.9 on win32)" generated="2024-10-28T14:57:04.727370" rpa="false" schemaversion="5">
 <suite id="s1" name="Robo Test Cases" source="C:\Users\anaramac\Documents\Codes\Fastapi\robo_test_cases.robot">
-<test id="s1-t1" name="Open Example Website" line="8">
+<test id="s1-t1" name="Verify Hello World is Displayed" line="8">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-10-28T10:57:45.149509" level="INFO">Opening browser 'chrome' to base url 'https://example.com'.</msg>
+<msg time="2024-10-28T14:57:05.052145" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8000'.</msg>
 <arg>${URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-10-28T10:57:45.149509" elapsed="11.195404"/>
+<status status="PASS" start="2024-10-28T14:57:05.052145" elapsed="2.116058"/>
 </kw>
-<kw name="Title Should Be" owner="SeleniumLibrary">
-<msg time="2024-10-28T10:57:56.355480" level="INFO">Page title is 'Example Domain'.</msg>
-<arg>Example Domain</arg>
-<doc>Verifies that the current page title equals ``title``.</doc>
-<status status="PASS" start="2024-10-28T10:57:56.344913" elapsed="0.010567"/>
+<kw name="Page Should Contain" owner="SeleniumLibrary">
+<msg time="2024-10-28T14:57:07.205884" level="INFO">Current page contains text 'Hello World'.</msg>
+<arg>Hello World</arg>
+<doc>Verifies that current page contains ``text``.</doc>
+<status status="PASS" start="2024-10-28T14:57:07.169256" elapsed="0.036628"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2024-10-28T10:57:56.356480" elapsed="2.264666"/>
+<status status="PASS" start="2024-10-28T14:57:07.207486" elapsed="2.373432"/>
 </kw>
-<status status="PASS" start="2024-10-28T10:57:45.148496" elapsed="13.474386"/>
+<status status="PASS" start="2024-10-28T14:57:05.051146" elapsed="4.530693"/>
 </test>
-<status status="PASS" start="2024-10-28T10:57:44.868679" elapsed="13.756623"/>
+<status status="PASS" start="2024-10-28T14:57:04.729502" elapsed="4.854754"/>
 </suite>
 <statistics>
 <total>

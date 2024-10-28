@@ -2,10 +2,10 @@
 Library    SeleniumLibrary
 
 *** Variables ***
-${URL}     https://example.com
+${URL}     http://localhost:8000
 
 *** Test Cases ***
-Open Example Website
+Verify Hello World is Displayed
     Open Browser    ${URL}    chrome
-    Title Should Be    Example Domain
+    Page Should Contain    Hello World
     Close Browser
