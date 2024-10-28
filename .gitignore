@@ -1,0 +1,31 @@
+# Created by pytest automatically.
+__pycache__/
+.pytest_cache/
+
+# Ignore Python bytecode files
+*.py[cod]
+*$py.class
+
+# Ignore virtual environment directories
+venv/
+env/
+
+# Ignore environment variable files
+.env
+
+# Ignore log files
+*.log
+
+# Ignore VS Code settings
+.vscode/
+
+# Ignore Docker files (if applicable)
+docker-compose.yml
+Dockerfile
+
+# Ignore Jupyter Notebook checkpoints (if you use notebooks)
+.ipynb_checkpoints/
+
+# Ignore system files
+.DS_Store
+Thumbs.db
