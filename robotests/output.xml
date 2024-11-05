@@ -1,38 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<robot generator="Robot 7.1.1 (Python 3.11.9 on win32)" generated="2024-10-29T12:20:04.912673" rpa="false" schemaversion="5">
-<suite id="s1" name="Robo Test Cases" source="C:\Users\anaramac\Documents\Codes\Fastapi\robo_test_cases.robot">
-<test id="s1-t1" name="Verify Hello World is Displayed" line="8">
+<robot generator="Robot 7.1.1 (Python 3.11.9 on win32)" generated="2024-11-05T16:26:30.804914" rpa="false" schemaversion="5">
+<suite id="s1" name="Robo Test Cases" source="C:\Users\anaramac\Documents\Codes\Fastapi\robotests\robo_test_cases.robot">
+<test id="s1-t1" name="Verify FastAPI Cassandra API is Displayed" line="9">
 <kw name="Open Browser" owner="SeleniumLibrary">
-<msg time="2024-10-29T12:20:05.472381" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8000'.</msg>
+<msg time="2024-11-05T16:26:31.311367" level="INFO">Opening browser 'chrome' to base url 'http://localhost:8000'.</msg>
 <arg>${URL}</arg>
 <arg>chrome</arg>
 <doc>Opens a new browser instance to the optional ``url``.</doc>
-<status status="PASS" start="2024-10-29T12:20:05.471381" elapsed="4.180850"/>
+<status status="PASS" start="2024-11-05T16:26:31.311367" elapsed="2.357191"/>
 </kw>
 <kw name="Page Should Contain" owner="SeleniumLibrary">
-<msg time="2024-10-29T12:20:09.730764" level="INFO">Current page contains text 'Hello World'.</msg>
-<arg>Hello World</arg>
+<msg time="2024-11-05T16:26:33.703342" level="INFO">Current page contains text 'FastAPI Cassandra API'.</msg>
+<arg>FastAPI Cassandra API</arg>
 <doc>Verifies that current page contains ``text``.</doc>
-<status status="PASS" start="2024-10-29T12:20:09.655556" elapsed="0.075739"/>
+<status status="PASS" start="2024-11-05T16:26:33.670384" elapsed="0.032958"/>
 </kw>
 <kw name="Close Browser" owner="SeleniumLibrary">
 <doc>Closes the current browser.</doc>
-<status status="PASS" start="2024-10-29T12:20:09.732428" elapsed="2.957597"/>
+<status status="PASS" start="2024-11-05T16:26:33.704341" elapsed="2.229020"/>
 </kw>
-<status status="PASS" start="2024-10-29T12:20:05.470382" elapsed="7.221389"/>
+<status status="PASS" start="2024-11-05T16:26:31.310365" elapsed="4.624646"/>
 </test>
-<status status="PASS" start="2024-10-29T12:20:04.916674" elapsed="7.779557"/>
+<test id="s1-t2" name="Verify Users Endpoint is Accessible" line="14">
+<kw name="Get Request">
+<msg time="2024-11-05T16:26:35.942946" level="FAIL">No keyword with name 'Get Request' found.</msg>
+<var>${response}</var>
+<arg>${URL}/users/</arg>
+<status status="FAIL" start="2024-11-05T16:26:35.942946" elapsed="0.000000">No keyword with name 'Get Request' found.</status>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Response status: ${response.status_code}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-11-05T16:26:35.942946" elapsed="0.000000"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<arg>Response content: ${response.content}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="NOT RUN" start="2024-11-05T16:26:35.949420" elapsed="0.000000"/>
+</kw>
+<kw name="Should Be Equal As Numbers" owner="BuiltIn">
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to real numbers.</doc>
+<status status="NOT RUN" start="2024-11-05T16:26:35.950415" elapsed="0.000000"/>
+</kw>
+<status status="FAIL" start="2024-11-05T16:26:35.937582" elapsed="0.014437">No keyword with name 'Get Request' found.</status>
+</test>
+<status status="FAIL" start="2024-11-05T16:26:30.808986" elapsed="5.146490"/>
 </suite>
 <statistics>
 <total>
-<stat pass="1" fail="0" skip="0">All Tests</stat>
+<stat pass="1" fail="1" skip="0">All Tests</stat>
 </total>
 <tag>
 </tag>
 <suite>
-<stat pass="1" fail="0" skip="0" id="s1" name="Robo Test Cases">Robo Test Cases</stat>
+<stat pass="1" fail="1" skip="0" id="s1" name="Robo Test Cases">Robo Test Cases</stat>
 </suite>
 </statistics>
 <errors>
+<msg time="2024-11-05T16:26:31.307980" level="ERROR">Error in file 'C:\Users\anaramac\Documents\Codes\Fastapi\robotests\robo_test_cases.robot' on line 3: Importing library 'RequestsLibrary' failed: ModuleNotFoundError: No module named 'RequestsLibrary'
+Traceback (most recent call last):
+  None
+PYTHONPATH:
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311\Scripts\robot.exe
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311\python311.zip
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311\DLLs
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311\Lib
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311\Lib\site-packages
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311\Lib\site-packages\win32
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311\Lib\site-packages\win32\lib
+  C:\Users\anaramac\AppData\Local\Programs\Python\Python311\Lib\site-packages\Pythonwin</msg>
 </errors>
 </robot>
