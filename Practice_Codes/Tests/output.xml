@@ -1,0 +1,486 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 7.1.1 (Python 3.11.9 on win32)" generated="2024-11-12T10:19:19.791510" rpa="false" schemaversion="5">
+<suite id="s1" name="Test Cases" source="C:\Users\anaramac\Documents\Codes\Practice\Tests\test_cases.robot">
+<test id="s1-t1" name="Validate Root endpoint GET /" line="10">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.281117" level="INFO">Creating Session using : alias=mysession, url=http://localhost:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-11-12T10:19:20.281117" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.332310" level="INFO">GET Request : url=http://localhost:8000/ 
+ path_url=/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-11-12T10:19:20.332310" level="INFO">GET Response : url=http://localhost:8000/ 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '25', 'content-type': 'application/json'} 
+ body={"message":"Hello World"} 
+ </msg>
+<msg time="2024-11-12T10:19:20.332857" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.282147" elapsed="0.050787"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.334256" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.333485" elapsed="0.000771"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()['message']}</arg>
+<arg>Hello World</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.334844" elapsed="0.000714"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.280112" elapsed="0.056089"/>
+</test>
+<test id="s1-t2" name="Test Read Item Endpoint" line="16">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.338840" level="INFO">Creating Session using : alias=mysession, url=http://localhost:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-11-12T10:19:20.338125" elapsed="0.000715"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.348183" level="INFO">GET Request : url=http://localhost:8000/items/1 
+ path_url=/items/1 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive'} 
+ body=None 
+ </msg>
+<msg time="2024-11-12T10:19:20.348706" level="INFO">GET Response : url=http://localhost:8000/items/1 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '51', 'content-type': 'application/json'} 
+ body={"item_id":1,"item":{"name":"Item 1","price":10.0}} 
+ </msg>
+<msg time="2024-11-12T10:19:20.348706" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/items/1</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.339574" elapsed="0.009132"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${response.status_code}' != '200'</arg>
+<arg>Fail</arg>
+<arg>"Item not found or error occurred"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.348706" elapsed="0.001085"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.350990" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.350798" elapsed="0.000192"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.352025" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.json()['item_id']}</arg>
+<arg>1</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.350990" elapsed="0.001035"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.337533" elapsed="0.015460"/>
+</test>
+<test id="s1-t3" name="TEST TEST Test Create Item Endpoint" line="23">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.355362" level="INFO">${payload} = {'name': 'Test Item', 'price': '20.5'}</msg>
+<var>${payload}</var>
+<arg>name=Test Item</arg>
+<arg>price=20.5</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.354991" elapsed="0.000371"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.412942" level="INFO">POST Request : url=http://localhost:8000/items (redirected) 
+ path_url=/items 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '38', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Test Item", "price": "20.5"}' 
+ </msg>
+<msg time="2024-11-12T10:19:20.413225" level="INFO">POST Response : url=http://localhost:8000/items/ 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '33', 'content-type': 'application/json'} 
+ body={"name":"Test Item","price":20.5} 
+ </msg>
+<msg time="2024-11-12T10:19:20.413654" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/items</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.355362" elapsed="0.058355"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${response.status_code}' != '200'</arg>
+<arg>Fail</arg>
+<arg>"Error occurred while creating item"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.414607" elapsed="0.001571"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.421797" level="INFO">{'name': 'Test Item', 'price': 20.5}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.417111" elapsed="0.004686"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.422878" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.422878" elapsed="0.000000"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.353995" elapsed="0.068883"/>
+</test>
+<test id="s1-t4" name="TEST TEST Test Update Item Endpoint" line="30">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.426673" level="INFO">${payload} = {'name': 'Updated Item', 'price': '25.5'}</msg>
+<var>${payload}</var>
+<arg>name=Updated Item</arg>
+<arg>price=25.5</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.426673" elapsed="0.000000"/>
+</kw>
+<kw name="PUT On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.491647" level="INFO">PUT Request : url=http://localhost:8000/items/1 
+ path_url=/items/1 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '41', 'Content-Type': 'application/json'} 
+ body=b'{"name": "Updated Item", "price": "25.5"}' 
+ </msg>
+<msg time="2024-11-12T10:19:20.491814" level="INFO">PUT Response : url=http://localhost:8000/items/1 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '48', 'content-type': 'application/json'} 
+ body={"item_id":1,"name":"Updated Item","price":25.5} 
+ </msg>
+<msg time="2024-11-12T10:19:20.491814" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/items/1</arg>
+<arg>json=${payload}</arg>
+<doc>Sends a PUT request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.429689" elapsed="0.062674"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${response.status_code}' != '200'</arg>
+<arg>Fail</arg>
+<arg>"Error occurred while updating item"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.493576" elapsed="0.002295"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.498878" level="INFO">{'item_id': 1, 'name': 'Updated Item', 'price': 25.5}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.497059" elapsed="0.001819"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.501150" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.500208" elapsed="0.000942"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.426673" elapsed="0.075494"/>
+</test>
+<test id="s1-t5" name="Test Read Items with Cookies" line="37">
+<kw name="Create Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.507481" level="INFO">Creating Session using : alias=mysession, url=http://localhost:8000, headers={},                     cookies={}, auth=None, timeout=None, proxies=None, verify=False,                     debug=0 </msg>
+<arg>mysession</arg>
+<arg>${BASE_URL}</arg>
+<doc>Create Session: create a HTTP session to a server</doc>
+<status status="PASS" start="2024-11-12T10:19:20.506480" elapsed="0.001999"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.509478" level="INFO">${cookies} = {'session_id': 'session123', 'fatebook_tracker': 'fatebook_value', 'googall_tracker': 'googall_value'}</msg>
+<var>${cookies}</var>
+<arg>session_id=session123</arg>
+<arg>fatebook_tracker=fatebook_value</arg>
+<arg>googall_tracker=googall_value</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.509478" elapsed="0.000000"/>
+</kw>
+<kw name="GET On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.525155" level="INFO">GET Request : url=http://localhost:8000/items/ 
+ path_url=/items/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Cookie': 'session_id=session123; fatebook_tracker=fatebook_value; googall_tracker=googall_value'} 
+ body=None 
+ </msg>
+<msg time="2024-11-12T10:19:20.525155" level="INFO">GET Response : url=http://localhost:8000/items/ 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '97', 'content-type': 'application/json'} 
+ body={"session_id":"session123","fatebook_tracker":"fatebook_value","googall_tracker":"googall_value"} 
+ </msg>
+<msg time="2024-11-12T10:19:20.525665" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>/items/</arg>
+<arg>cookies=${cookies}</arg>
+<doc>Sends a GET request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.510479" elapsed="0.015220"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${response.status_code}' != '200'</arg>
+<arg>Fail</arg>
+<arg>"Error occurred while reading items"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.525699" elapsed="0.000787"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.527661" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.527077" elapsed="0.001101"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()['session_id']}</arg>
+<arg>session123</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.528326" elapsed="0.000590"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()['fatebook_tracker']}</arg>
+<arg>fatebook_value</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.529554" elapsed="0.000592"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<arg>${response.json()['googall_tracker']}</arg>
+<arg>googall_value</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.530750" elapsed="0.000719"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.504502" elapsed="0.026967"/>
+</test>
+<test id="s1-t6" name="Test Login Endpoint" line="47">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.533186" level="INFO">${payload} = {'username': 'testuser', 'password': 'testpassword'}</msg>
+<var>${payload}</var>
+<arg>username=testuser</arg>
+<arg>password=testpassword</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.533186" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.587668" level="INFO">POST Request : url=http://localhost:8000/login/ 
+ path_url=/login/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '39', 'Content-Type': 'application/x-www-form-urlencoded'} 
+ body=username=testuser&amp;password=testpassword 
+ </msg>
+<msg time="2024-11-12T10:19:20.588641" level="INFO">POST Response : url=http://localhost:8000/login/ 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '49', 'content-type': 'application/json'} 
+ body={"username":"testuser","password":"testpassword"} 
+ </msg>
+<msg time="2024-11-12T10:19:20.589187" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${BASE_URL}/login/</arg>
+<arg>data=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.533905" elapsed="0.055353"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${response.status_code}' != '200'</arg>
+<arg>Fail</arg>
+<arg>"Error occurred during login"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.589741" elapsed="0.001078"/>
+</kw>
+<kw name="Log" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.593499" level="INFO">{'username': 'testuser', 'password': 'testpassword'}</msg>
+<arg>${response.json()}</arg>
+<doc>Logs the given message with the given level.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.592036" elapsed="0.001608"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.595229" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.593644" elapsed="0.001585"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.532616" elapsed="0.063646"/>
+</test>
+<test id="s1-t7" name="Test Create File Endpoint" line="55">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.598997" level="INFO">${payload} = {'file': '@path/to/your/file.txt'}</msg>
+<var>${payload}</var>
+<arg>file=@path/to/your/file.txt</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.598997" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.651547" level="INFO">POST Request : url=http://localhost:8000/files/ 
+ path_url=/files/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '162', 'Content-Type': 'multipart/form-data; boundary=61f4e871890b2b785b6a6c73c15dc5a0'} 
+ body=b'--61f4e871890b2b785b6a6c73c15dc5a0\r\nContent-Disposition: form-data; name="file"; filename="file"\r\n\r\n@path/to/your/file.txt\r\n--61f4e871890b2b785b6a6c73c15dc5a0--\r\n' 
+ </msg>
+<msg time="2024-11-12T10:19:20.652189" level="INFO">POST Response : url=http://localhost:8000/files/ 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '16', 'content-type': 'application/json'} 
+ body={"file_size":22} 
+ </msg>
+<msg time="2024-11-12T10:19:20.652532" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${BASE_URL}/files/</arg>
+<arg>files=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.600055" elapsed="0.052518"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${response.status_code}' != '200'</arg>
+<arg>Fail</arg>
+<arg>"Error occurred while creating file"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.653127" elapsed="0.001388"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.656071" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.654871" elapsed="0.001349"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.597878" elapsed="0.058759"/>
+</test>
+<test id="s1-t8" name="Test Upload File Endpoint" line="62">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.659603" level="INFO">${payload} = {'file': '@path/to/your/file.txt'}</msg>
+<var>${payload}</var>
+<arg>file=@path/to/your/file.txt</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.658617" elapsed="0.001043"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.716594" level="INFO">POST Request : url=http://localhost:8000/uploadfile/ 
+ path_url=/uploadfile/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '162', 'Content-Type': 'multipart/form-data; boundary=c9c58ef2cde7ae88ce9fba55d6da9bbd'} 
+ body=b'--c9c58ef2cde7ae88ce9fba55d6da9bbd\r\nContent-Disposition: form-data; name="file"; filename="file"\r\n\r\n@path/to/your/file.txt\r\n--c9c58ef2cde7ae88ce9fba55d6da9bbd--\r\n' 
+ </msg>
+<msg time="2024-11-12T10:19:20.717058" level="INFO">POST Response : url=http://localhost:8000/uploadfile/ 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '19', 'content-type': 'application/json'} 
+ body={"filename":"file"} 
+ </msg>
+<msg time="2024-11-12T10:19:20.717310" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${BASE_URL}/uploadfile/</arg>
+<arg>files=${payload}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.660177" elapsed="0.057133"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${response.status_code}' != '200'</arg>
+<arg>Fail</arg>
+<arg>"Error occurred while uploading file"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.719067" elapsed="0.001964"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.723831" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.722197" elapsed="0.001634"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.658085" elapsed="0.067287"/>
+</test>
+<test id="s1-t9" name="Test Files With Token Endpoint" line="69">
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.728468" level="INFO">${payload} = {'file': '@path/to/your/file.txt', 'fileb': '@path/to/another/file.txt'}</msg>
+<var>${payload}</var>
+<arg>file=@path/to/your/file.txt</arg>
+<arg>fileb=@path/to/another/file.txt</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.728468" elapsed="0.000000"/>
+</kw>
+<kw name="Create Dictionary" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.728468" level="INFO">${form_data} = {'token': 'mytoken'}</msg>
+<var>${form_data}</var>
+<arg>token=mytoken</arg>
+<doc>Creates and returns a dictionary based on the given ``items``.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.728468" elapsed="0.000000"/>
+</kw>
+<kw name="POST On Session" owner="RequestsLibrary">
+<msg time="2024-11-12T10:19:20.792932" level="INFO">POST Request : url=http://localhost:8000/files/ 
+ path_url=/files/ 
+ headers={'User-Agent': 'python-requests/2.32.3', 'Accept-Encoding': 'gzip, deflate', 'Accept': '*/*', 'Connection': 'keep-alive', 'Content-Length': '384', 'Content-Type': 'multipart/form-data; boundary=06e856373b757bd4e84dca584d2bb760'} 
+ body=b'--06e856373b757bd4e84dca584d2bb760\r\nContent-Disposition: form-data; name="token"\r\n\r\nmytoken\r\n--06e856373b757bd4e84dca584d2bb760\r\nContent-Disposition: form-data; name="file"; filename="file"\r\n\r\n@path/to/your/file.txt\r\n--06e856373b757bd4e84dca584d2bb760\r\nContent-Disposition: form-data; name="fileb"; filename="fileb"\r\n\r\n@path/to/another/file.txt\r\n--06e856373b757bd4e84dca584d2bb760--\r\n' 
+ </msg>
+<msg time="2024-11-12T10:19:20.793405" level="INFO">POST Response : url=http://localhost:8000/files/ 
+ status=200, reason=OK 
+ headers={'date': 'Tue, 12 Nov 2024 04:49:14 GMT', 'server': 'uvicorn', 'content-length': '16', 'content-type': 'application/json'} 
+ body={"file_size":22} 
+ </msg>
+<msg time="2024-11-12T10:19:20.793844" level="INFO">${response} = &lt;Response [200]&gt;</msg>
+<var>${response}</var>
+<arg>mysession</arg>
+<arg>${BASE_URL}/files/</arg>
+<arg>files=${payload}</arg>
+<arg>data=${form_data}</arg>
+<doc>Sends a POST request on a previously created HTTP Session.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.732062" elapsed="0.061852"/>
+</kw>
+<kw name="Run Keyword If" owner="BuiltIn">
+<arg>'${response.status_code}' != '200'</arg>
+<arg>Fail</arg>
+<arg>"Error occurred while uploading files with token"</arg>
+<doc>Runs the given keyword with the given arguments, if ``condition`` is true.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.795587" elapsed="0.002134"/>
+</kw>
+<kw name="Should Be Equal As Strings" owner="BuiltIn">
+<msg time="2024-11-12T10:19:20.800179" level="INFO">Argument types are:
+&lt;class 'int'&gt;
+&lt;class 'str'&gt;</msg>
+<arg>${response.status_code}</arg>
+<arg>200</arg>
+<doc>Fails if objects are unequal after converting them to strings.</doc>
+<status status="PASS" start="2024-11-12T10:19:20.798802" elapsed="0.001377"/>
+</kw>
+<status status="PASS" start="2024-11-12T10:19:20.727513" elapsed="0.073347"/>
+</test>
+<status status="PASS" start="2024-11-12T10:19:19.797877" elapsed="1.006250"/>
+</suite>
+<statistics>
+<total>
+<stat pass="9" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="9" fail="0" skip="0" id="s1" name="Test Cases">Test Cases</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
